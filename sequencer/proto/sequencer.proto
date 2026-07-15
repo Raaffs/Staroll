@@ -1,0 +1,24 @@
+syntax = "proto3";
+package sequencer;
+
+service RootAnchoring {
+  rpc SubmitRoot (RootSubmission) returns (Response);
+}
+
+message RootSubmission {
+  bytes signed_root = 1; 
+  bytes public_key = 2;  
+}
+
+enum SequencerStatus {
+  UNKNOWN = 0;
+  ACCEPTED = 1;
+  INVALID_SIGNATURE = 2;
+  INTERNAL_ERROR = 3;
+}
+
+message Response {
+  SequencerStatus status = 1;
+  uint64 sequence_number = 2; 
+  string error_details = 3;   
+}

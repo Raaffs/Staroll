@@ -80,6 +80,7 @@ impl BatcherEngine {
             }
 
         }
+        
         let tree =MerkleTree::from_leaves(valid_batch);
         let p=tree.build_proof_for(&[1usize]);
     }
